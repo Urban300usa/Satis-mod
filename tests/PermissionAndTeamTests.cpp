@@ -1,10 +1,9 @@
 // Unit tests for the game-independent rule logic.
-// Build and run: make -C tests
 #include "Core/BOPermissions.h"
 #include "Core/BOTeams.h"
 
-#include <cstdio>
-#include <functional>
+#include "TestHarness.h"
+
 #include <string>
 #include <vector>
 
@@ -12,38 +11,6 @@ using namespace bo::core;
 
 namespace
 {
-	int Failures = 0;
-	int Checks = 0;
-	std::string Current;
-
-	void Expect(bool Condition, const char* Expr, int Line)
-	{
-		++Checks;
-		if (!Condition)
-		{
-			++Failures;
-			std::printf("  FAIL [%s] line %d: %s\n", Current.c_str(), Line, Expr);
-		}
-	}
-
-#define EXPECT(x) Expect((x), #x, __LINE__)
-
-	struct TestCase
-	{
-		const char* Name;
-		std::function<void()> Fn;
-	};
-	std::vector<TestCase>& Registry()
-	{
-		static std::vector<TestCase> R;
-		return R;
-	}
-	struct Register
-	{
-		Register(const char* Name, std::function<void()> Fn) { Registry().push_back({Name, std::move(Fn)}); }
-	};
-#define TEST(name) static void name(); static Register reg_##name(#name, name); static void name()
-
 	ActorState Player(const std::string& Id) { return ActorState{Id, false, false}; }
 	ActorState Admin(const std::string& Id, bool Bypass) { return ActorState{Id, true, Bypass}; }
 	BuildingState OwnedBy(const std::string& Owner, bool Locked = false) { return BuildingState{Owner, Locked, false}; }
@@ -402,17 +369,4 @@ TEST(RestoreRoundTrip)
 	TeamId NewId = 0;
 	R.Create("zed", "Zulu", &NewId);
 	EXPECT(NewId == T.NextTeamId());
-}
-
-int main()
-{
-	for (const TestCase& Tc : Registry())
-	{
-		Current = Tc.Name;
-		const int Before = Failures;
-		Tc.Fn();
-		std::printf("%s %s\n", Failures == Before ? "PASS" : "FAIL", Tc.Name);
-	}
-	std::printf("\n%zu tests, %d checks, %d failures\n", Registry().size(), Checks, Failures);
-	return Failures == 0 ? 0 : 1;
 }

@@ -2,6 +2,7 @@
 
 #include "OwnershipSubsystem.h"
 #include "Commands/OwnerCommand.h"
+#include "Commands/TeamCommands.h"
 
 UBOGameWorldModule::UBOGameWorldModule()
 {
@@ -10,4 +11,8 @@ UBOGameWorldModule::UBOGameWorldModule()
 	bRootModule = true;
 	ModSubsystems.Add(AOwnershipSubsystem::StaticClass());
 	mChatCommands.Add(AOwnerCommand::StaticClass());
+	mChatCommands.Add(ATeamCommand::StaticClass());
+	mChatCommands.Add(ATrustCommand::StaticClass());
+	mChatCommands.Add(AUntrustCommand::StaticClass());
+	mChatCommands.Add(AScoresCommand::StaticClass());
 }

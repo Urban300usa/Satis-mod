@@ -10,9 +10,9 @@ BUILD := build
 test: $(BUILD)/CoreTests
 	./$(BUILD)/CoreTests
 
-$(BUILD)/CoreTests: CoreTests.cpp $(CORE_SRCS) $(wildcard $(SRC_DIR)/Public/Core/*.h)
+$(BUILD)/CoreTests: $(wildcard *.cpp) TestHarness.h $(CORE_SRCS) $(wildcard $(SRC_DIR)/Public/Core/*.h)
 	@mkdir -p $(BUILD)
-	$(CXX) $(CXXFLAGS) $(INCLUDES) CoreTests.cpp $(CORE_SRCS) -o $@
+	$(CXX) $(CXXFLAGS) $(INCLUDES) $(wildcard *.cpp) $(CORE_SRCS) -o $@
 
 clean:
 	rm -rf $(BUILD)
