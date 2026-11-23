@@ -1,5 +1,7 @@
 # Building Ownership Mod — Design Spec (v1)
 
+> **Superseded by [`BUILD_PLAN.md`](BUILD_PLAN.md).** Kept for history; where they disagree, the build plan wins.
+
 Working name: **BuildingOwnership** (placeholder; the mod reference must be unique on ficsit.app).
 
 A server-side Satisfactory mod. Whatever a player places belongs to them. Only the
