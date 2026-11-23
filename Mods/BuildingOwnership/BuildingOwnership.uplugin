@@ -1,0 +1,33 @@
+{
+	"FileVersion": 3,
+	"Version": 1,
+	"VersionName": "0.1.0",
+	"SemVersion": "0.1.0",
+	"FriendlyName": "Building Ownership",
+	"Description": "Server-side building ownership, teams, scoring, PvP and steals for dedicated servers.",
+	"Category": "Modding",
+	"CreatedBy": "Tyler",
+	"CreatedByURL": "",
+	"DocsURL": "",
+	"MarketplaceURL": "",
+	"SupportURL": "",
+	"CanContainContent": true,
+	"IsBetaVersion": true,
+	"IsExperimentalVersion": false,
+	"Installed": false,
+	"RequiredOnRemote": false,
+	"Modules": [
+		{
+			"Name": "BuildingOwnership",
+			"Type": "Runtime",
+			"LoadingPhase": "PostDefault"
+		}
+	],
+	"Plugins": [
+		{
+			"Name": "SML",
+			"Enabled": true,
+			"SemVersion": "^3.8.0"
+		}
+	]
+}
